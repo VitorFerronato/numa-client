@@ -24,6 +24,14 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/home",
+    name: "home",
+    component: () => import("../views/Login/HomeView.vue"),
+    meta: {
+      title: "Home",
+    },
+  },
 ];
 
 const router = createRouter({
@@ -32,8 +40,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const title = to.meta.title || "Numa";
-  document.title = title;
+  document.title = `Numa | ${to.meta.title}`;
   next();
 });
 

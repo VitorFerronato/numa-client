@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <p>Projeto inicializado</p>
     <router-view></router-view>
   </v-app>
 </template>

@@ -1,5 +1,7 @@
 <template>
-  <div>SIGN IN</div>
+  <div>
+    <h4>SIGN IN</h4>
+  </div>
 </template>
 
 <script setup></script>
