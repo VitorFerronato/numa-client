@@ -11,6 +11,7 @@ import {
   VTextField,
   VIcon,
   VProgressCircular,
+  VDivider,
 } from "vuetify/components";
 import "vuetify/styles";
 
@@ -29,6 +30,7 @@ const vuetify = createVuetify({
     VTextField,
     VIcon,
     VProgressCircular,
+    VDivider,
   },
   theme: {
     defaultTheme: "customTheme",
@@ -40,6 +42,7 @@ const vuetify = createVuetify({
           success: "#1d8527",
           background: "#f5f5f5",
           text: "#003705",
+          "text-secondary": "#666666",
         },
       },
     },

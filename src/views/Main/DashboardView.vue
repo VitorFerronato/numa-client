@@ -1,23 +1,28 @@
 <template>
-  <v-container fluid>
-    dashboard Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
-    quod harum voluptatem beatae odio, aut soluta fuga repellendus, numquam
-    blanditiis laudantium possimus amet quas eum ad, esse quia perspiciatis
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-    nobis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+  <v-container fluid max-width="1200px">
+    <GeralVision />
+
+    <div class="d-flex ga-5">
+      <BankAccounts />
+      <CreditCards />
+    </div>
+
+    <div class="d-flex ga-5">
+      <BillsToPay />
+      <BillsToGain />
+    </div>
+
+    <MostExpenses />
   </v-container>
 </template>
 
-<script setup></script>
+<script setup>
+import BankAccounts from "./components/BankAccounts.vue";
+import CreditCards from "./components/CreditCards.vue";
+import GeralVision from "./components/GeralVision.vue";
+import BillsToPay from "./components/BillsToPay.vue";
+import BillsToGain from "./components/BillsToGain.vue";
+import MostExpenses from "./components/MostExpenses.vue";
+</script>
 
 <style lang="scss" scoped></style>
