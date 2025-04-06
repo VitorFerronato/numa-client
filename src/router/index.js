@@ -29,6 +29,14 @@ const routes = [
           title: "Sign Up",
         },
       },
+      {
+        path: "sign-out",
+        name: "sign-out",
+        component: () => import("../views/Login/SignOut.vue"),
+        meta: {
+          title: "Sign Out",
+        },
+      },
     ],
   },
   {

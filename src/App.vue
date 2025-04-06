@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <Header v-if="route.path.startsWith('/main')" />
+
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component
@@ -12,12 +14,16 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
+import Header from "@/components/Header.vue";
 
+import { useRoute } from "vue-router";
 const route = useRoute();
 </script>
 
 <style lang="scss" scoped>
+.main-view {
+  margin-top: $header-height;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

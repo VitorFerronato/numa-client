@@ -9,6 +9,8 @@ import {
   VCol,
   VForm,
   VTextField,
+  VIcon,
+  VProgressCircular,
 } from "vuetify/components";
 import "vuetify/styles";
 
@@ -25,6 +27,8 @@ const vuetify = createVuetify({
     VCol,
     VForm,
     VTextField,
+    VIcon,
+    VProgressCircular,
   },
   theme: {
     defaultTheme: "customTheme",
