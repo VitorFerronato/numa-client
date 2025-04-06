@@ -19,11 +19,17 @@
         <DTextfield v-model="confirmPassword" title="Confirm password" />
       </div>
 
-      <DBtn title="Sign up" block :loading="isLoading" class="my-6" />
+      <DBtn
+        :loading="isLoading"
+        title="Sign up"
+        type="submit"
+        block
+        class="my-6"
+      />
 
       <router-link to="/login/sign-in">
         <DBtn
-          :loading="isLoading"
+          :disabled="isLoading"
           title="Already have an account"
           variant="tonal"
           block
@@ -38,6 +44,9 @@ import DBtn from "@/components/DBtn.vue";
 import DTextfield from "@/components/DTextfield.vue";
 
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const name = ref("");
 const email = ref("");
@@ -49,12 +58,14 @@ const confirmPassword = ref("");
 const validateForm = async () => {
   isLoading.value = true;
   const isValid = await formRef.value.validate();
-  if (isValid) signIn();
+  if (isValid) signUp();
 };
 
-const signIn = () => {
-  console.log("Sign in");
-  isLoading.value = false;
+const signUp = () => {
+  setTimeout(() => {
+    isLoading.value = false;
+    router.push("/login/sign-in");
+  }, 2000);
 };
 </script>
 
