@@ -7,6 +7,8 @@ import {
   VCard,
   VRow,
   VCol,
+  VForm,
+  VTextField,
 } from "vuetify/components";
 import "vuetify/styles";
 
@@ -21,6 +23,8 @@ const vuetify = createVuetify({
     VCard,
     VRow,
     VCol,
+    VForm,
+    VTextField,
   },
   theme: {
     defaultTheme: "customTheme",
@@ -31,6 +35,7 @@ const vuetify = createVuetify({
           error: "#b00020",
           success: "#1d8527",
           background: "#f5f5f5",
+          text: "#003705",
         },
       },
     },

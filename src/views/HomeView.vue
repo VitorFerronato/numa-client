@@ -45,9 +45,11 @@
 
       <v-row justify="center" class="mt-8">
         <v-col cols="12" sm="6" md="4">
-          <v-btn block size="large" color="primary" class="mb-4">
-            Entrar
-          </v-btn>
+          <router-link to="/login/sign-in">
+            <v-btn block size="large" color="primary" class="mb-4">
+              Entrar
+            </v-btn>
+          </router-link>
           <v-btn block size="large" variant="outlined"> Criar conta </v-btn>
         </v-col>
       </v-row>

@@ -20,3 +20,13 @@ $feedback-color-warning-dark: #35000a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a,
+router-link {
+  text-decoration: none;
+  color: #003705;
+}
+
+.v-btn.bg-primary {
+  color: white !important;
+}

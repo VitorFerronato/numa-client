@@ -1,22 +1,30 @@
 <template>
   <v-card class="pa-5">
-    <h4 class="text-h4 text-center mb-5">Sign in</h4>
+    <h4 class="text-h4 text-text text-center mb-5">Sign up</h4>
 
     <v-form :disabled="isLoading" @submit.prevent="validateForm" ref="formRef">
-      <div class="mb-6">
+      <div>
+        <DTextfield v-model="name" title="Name" />
+      </div>
+
+      <div class="my-6">
         <DTextfield v-model="email" title="Email" />
       </div>
 
-      <div>
+      <div class="mb-6">
         <DTextfield v-model="password" title="Password" />
       </div>
 
-      <DBtn title="Sign in" block :loading="isLoading" class="my-6" />
+      <div>
+        <DTextfield v-model="confirmPassword" title="Confirm password" />
+      </div>
 
-      <router-link to="/login/sign-up">
+      <DBtn title="Sign up" block :loading="isLoading" class="my-6" />
+
+      <router-link to="/login/sign-in">
         <DBtn
           :loading="isLoading"
-          title="Create an account"
+          title="Already have an account"
           variant="tonal"
           block
         />
@@ -31,10 +39,12 @@ import DTextfield from "@/components/DTextfield.vue";
 
 import { ref } from "vue";
 
+const name = ref("");
 const email = ref("");
 const formRef = ref(null);
 const password = ref("");
 const isLoading = ref(false);
+const confirmPassword = ref("");
 
 const validateForm = async () => {
   isLoading.value = true;

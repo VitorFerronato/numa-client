@@ -1,10 +1,9 @@
-// router/index.js
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
     path: "/",
-    redirect: { name: "sign-in" },
+    redirect: { name: "home" },
   },
   {
     path: "/login",
@@ -22,12 +21,39 @@ const routes = [
           title: "Sign In",
         },
       },
+      {
+        path: "sign-up",
+        name: "sign-up",
+        component: () => import("../views/Login/SignUp.vue"),
+        meta: {
+          title: "Sign Up",
+        },
+      },
     ],
   },
   {
+    path: "/main",
+    name: "main",
+    children: [
+      {
+        path: "",
+        redirect: { name: "dashboard" },
+      },
+      {
+        path: "dashboard",
+        name: "dashboard",
+        component: () => import("../views/Main/DashboardView.vue"),
+        meta: {
+          title: "Dashboard",
+        },
+      },
+    ],
+  },
+
+  {
     path: "/home",
     name: "home",
-    component: () => import("../views/Login/HomeView.vue"),
+    component: () => import("../views/HomeView.vue"),
     meta: {
       title: "Home",
     },
