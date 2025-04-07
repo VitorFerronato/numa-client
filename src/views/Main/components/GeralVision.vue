@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-5 d-flex">
+  <v-card class="pa-8 d-flex">
     <div class="w-50">
       <p class="text-text-secondary">Bom dia!</p>
       <p class="font-weight-bold text-h6">Vitor Ferronato</p>

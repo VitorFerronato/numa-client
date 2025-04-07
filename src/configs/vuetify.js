@@ -41,6 +41,7 @@ const vuetify = createVuetify({
           error: "#b00020",
           success: "#1d8527",
           background: "#f5f5f5",
+          "background-light": "#E0E0E0",
           text: "#003705",
           "text-secondary": "#666666",
         },
