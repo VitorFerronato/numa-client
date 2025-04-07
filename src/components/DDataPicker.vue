@@ -3,23 +3,21 @@
     <label class="text-body text-text-secondary">
       <slot name="title">{{ title }}</slot>
     </label>
-
-    <v-text-field
-      v-bind="$attrs"
-      @input="$emit('input', $event)"
-      @blur="$emit('blur', $event)"
-      @focus="$emit('focus', $event)"
+    <v-date-input
+      v-model="date"
       variant="outlined"
       density="comfortable"
       hide-details="auto"
+      prepend-icon=""
+      append-inner-icon="mdi-calendar"
       color="primary"
       class="mt-1"
-    >
-    </v-text-field>
+    ></v-date-input>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 defineProps({
   title: {
     type: String,
@@ -27,5 +25,7 @@ defineProps({
   },
 });
 
-defineEmits(["input", "blur", "focus"]);
+const date = ref(new Date());
 </script>
+
+<style lang="scss" scoped></style>

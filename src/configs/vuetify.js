@@ -12,10 +12,14 @@ import {
   VIcon,
   VProgressCircular,
   VDivider,
+  VDialog,
+  VCombobox,
+  VCheckbox,
 } from "vuetify/components";
 import "vuetify/styles";
 
 import { aliases, mdi } from "vuetify/iconsets/mdi";
+import { VDateInput } from "vuetify/labs/VDateInput";
 
 const vuetify = createVuetify({
   components: {
@@ -31,6 +35,10 @@ const vuetify = createVuetify({
     VIcon,
     VProgressCircular,
     VDivider,
+    VDialog,
+    VDateInput,
+    VCombobox,
+    VCheckbox,
   },
   theme: {
     defaultTheme: "customTheme",

@@ -1,21 +1,19 @@
 <template>
   <div>
-    <label class="text-body text-text-secondary">
+    <label class="label-comboBox">
       <slot name="title">{{ title }}</slot>
     </label>
 
-    <v-text-field
+    <v-combobox
       v-bind="$attrs"
-      @input="$emit('input', $event)"
-      @blur="$emit('blur', $event)"
-      @focus="$emit('focus', $event)"
+      :items="items"
       variant="outlined"
       density="comfortable"
       hide-details="auto"
       color="primary"
       class="mt-1"
     >
-    </v-text-field>
+    </v-combobox>
   </div>
 </template>
 
@@ -25,7 +23,11 @@ defineProps({
     type: String,
     default: "",
   },
+  items: {
+    type: Array,
+    default: [],
+  },
 });
-
-defineEmits(["input", "blur", "focus"]);
 </script>
+
+<style lang="scss" scoped></style>

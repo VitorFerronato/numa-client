@@ -25,20 +25,16 @@
       <p class="font-weight-bold text-center mt-4 text-h6">Acesso rápido</p>
 
       <div class="d-flex justify-center ga-8 mt-4">
-        <div class="d-flex pa-4 ga-2 justify-center align-center flex-column">
-          <v-icon size="35" color="error">mdi-minus-circle-outline</v-icon>
-          <p class="text-text-secondary">Despesa</p>
-        </div>
+        <AddRegister expense />
 
-        <div class="d-flex pa-4 ga-2 justify-center align-center flex-column">
-          <v-icon size="35" color="success">mdi-plus-circle-outline</v-icon>
-          <p class="text-text-secondary">Receita</p>
-        </div>
+        <AddRegister />
       </div>
     </div>
   </v-card>
 </template>
 
-<script setup></script>
+<script setup>
+import AddRegister from "@/components/AddRegister.vue";
+</script>
 
 <style lang="scss" scoped></style>
