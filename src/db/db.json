@@ -1,0 +1,45 @@
+{
+  "accountStats": {
+    "totalBalance": 1000,
+    "totalExpenses": 500
+  },
+
+  "accounts": {
+    "generalBalance": 3250,
+    "accounts": [
+      {
+        "name": "Banco do Brasil",
+        "balance": 1000,
+        "icon": 0
+      },
+      {
+        "name": "Nubank",
+        "balance": 2147,
+        "icon": 1
+      }
+    ]
+  },
+  "creditCards": {
+    "totalInvoice": 1000,
+    "creditCards": [
+      {
+        "name": "Banco do Brasil",
+        "id": 2,
+        "availableLimit": 9.0,
+        "invoice": 1000,
+        "closeDate": "10/04/2025",
+        "dueDate": "17/04/2025",
+        "icon": 0
+      },
+      {
+        "name": "Nubank",
+        "id": 4,
+        "availableLimit": 200,
+        "invoice": 1000,
+        "closeDate": "10/04/2025",
+        "dueDate": "17/04/2025",
+        "icon": 1
+      }
+    ]
+  }
+}

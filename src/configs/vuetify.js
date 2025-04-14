@@ -15,6 +15,7 @@ import {
   VDialog,
   VCombobox,
   VCheckbox,
+  VSkeletonLoader,
 } from "vuetify/components";
 import "vuetify/styles";
 
@@ -39,6 +40,7 @@ const vuetify = createVuetify({
     VDateInput,
     VCombobox,
     VCheckbox,
+    VSkeletonLoader,
   },
   theme: {
     defaultTheme: "customTheme",

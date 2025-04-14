@@ -50,9 +50,17 @@ const routes = [
       {
         path: "dashboard",
         name: "dashboard",
-        component: () => import("../views/Main/DashboardView.vue"),
+        component: () => import("../views/main/DashboardView.vue"),
         meta: {
           title: "Dashboard",
+        },
+      },
+      {
+        path: "entry",
+        name: "entry",
+        component: () => import("../views/main/Entry/EntryView.vue"),
+        meta: {
+          title: "Lançamentos",
         },
       },
     ],

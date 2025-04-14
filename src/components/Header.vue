@@ -1,6 +1,10 @@
 <template>
   <header class="header">
     <p>Numa</p>
+    <div class="d-flex ga-5">
+      <router-link to="/main/dashboard">Visão geral</router-link>
+      <router-link to="/main/entry">Lançamentos</router-link>
+    </div>
     <router-link to="/login/sign-out">
       <v-icon color="white">mdi-logout</v-icon>
     </router-link>
