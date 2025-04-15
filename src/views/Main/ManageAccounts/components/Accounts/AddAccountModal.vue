@@ -12,7 +12,7 @@
         <h4 class="mb-6">Adicionar conta</h4>
 
         <div class="d-flex flex-column align-center ga-4 mb-6">
-          <div class="avatar"></div>
+          <DAvatar />
           <p class="text-text-secondary">Escolha um ícone</p>
         </div>
 
@@ -37,6 +37,7 @@
 
 <script setup>
 import DBtn from "@/components/DBtn.vue";
+import DAvatar from "@/components/DAvatar.vue";
 import DTextField from "@/components/DTextField.vue";
 
 import { ref } from "vue";
@@ -68,12 +69,3 @@ const createAccount = async () => {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid $feedback-color-success-pure;
-}
-</style>

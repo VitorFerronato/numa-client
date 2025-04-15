@@ -5,6 +5,7 @@
         <v-icon start>mdi-bank</v-icon>
         Contas
       </v-tab>
+
       <v-tab to="/main/manage-accounts/credit-cards" value="cards">
         <v-icon start>mdi-credit-card</v-icon>
         Cartões

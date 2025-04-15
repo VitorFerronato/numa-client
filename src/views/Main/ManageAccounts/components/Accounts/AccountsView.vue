@@ -45,7 +45,7 @@
         <router-link :to="`/main/manage-accounts/account/${account.id}`">
           <div class="d-flex justify-space-between align-center">
             <div class="d-flex align-center ga-4">
-              <div class="avatar"></div>
+              <DAvatar />
               <p>{{ account.name }}</p>
             </div>
 
@@ -59,6 +59,7 @@
 </template>
 
 <script setup>
+import DAvatar from "@/components/DAvatar.vue";
 import AddAccountModal from "./AddAccountModal.vue";
 
 import { service } from "@/api";
@@ -89,13 +90,6 @@ onMounted(() => {
   border-left: 4px solid $feedback-color-success-pure;
   border-radius: 4px;
   padding-left: 16px;
-}
-
-.avatar {
-  width: 43px;
-  height: 43px;
-  border-radius: 50%;
-  border: 1px solid $feedback-color-success-pure;
 }
 
 .skeleton-container {

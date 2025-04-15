@@ -1,14 +1,11 @@
 <template>
   <div class="d-flex justify-center">
-    <v-card
-      :disabled="getAccountLoading"
-      :loading="getAccountLoading"
-      class="pa-6 w-50"
-    >
+    <v-card class="pa-6 w-50">
       <div class="d-flex justify-space-between align-center mb-6">
         <h2 class="text-h6">Editar Conta</h2>
         <v-btn
           :loading="loading"
+          :disabled="getAccountLoading"
           @click="deleteAccount"
           color="error"
           variant="tonal"
@@ -18,26 +15,33 @@
         </v-btn>
       </div>
 
-      <v-form @submit.prevent="validateForm" ref="form">
+      <div v-if="getAccountLoading" class="d-flex justify-center">
+        <v-progress-circular
+          indeterminate
+          color="primary"
+          size="40"
+        ></v-progress-circular>
+      </div>
+
+      <v-form v-else @submit.prevent="validateForm" ref="form">
         <v-text-field
           v-model="accountData.name"
-          label="Nome da conta"
           :rules="[(v) => !!v || 'Nome é obrigatório']"
+          label="Nome da conta"
           variant="outlined"
           density="comfortable"
           class="mb-4"
         />
         <v-text-field
           v-model="accountData.balance"
+          :rules="[(v) => !!v || 'Saldo é obrigatório']"
           label="Saldo inicial"
           type="number"
           prefix="R$"
-          :rules="[(v) => !!v || 'Saldo é obrigatório']"
           variant="outlined"
           density="comfortable"
           class="mb-4"
         />
-
         <div class="d-flex justify-end ga-4">
           <v-btn
             :disabled="loading"
@@ -80,9 +84,7 @@ const accountData = ref({
 const validateForm = async () => {
   const { valid } = await form.value.validate();
 
-  if (!valid) return;
-
-  handleSubmit();
+  if (valid) handleSubmit();
 };
 
 const handleSubmit = async () => {
