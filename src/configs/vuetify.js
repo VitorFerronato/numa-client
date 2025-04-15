@@ -16,6 +16,10 @@ import {
   VCombobox,
   VCheckbox,
   VSkeletonLoader,
+  VTabs,
+  VWindow,
+  VWindowItem,
+  VTab,
 } from "vuetify/components";
 import "vuetify/styles";
 
@@ -41,6 +45,10 @@ const vuetify = createVuetify({
     VCombobox,
     VCheckbox,
     VSkeletonLoader,
+    VTabs,
+    VTab,
+    VWindow,
+    VWindowItem,
   },
   theme: {
     defaultTheme: "customTheme",

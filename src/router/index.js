@@ -50,7 +50,7 @@ const routes = [
       {
         path: "dashboard",
         name: "dashboard",
-        component: () => import("../views/main/DashboardView.vue"),
+        component: () => import("../views/main/Dashboard/DashboardView.vue"),
         meta: {
           title: "Dashboard",
         },
@@ -62,6 +62,47 @@ const routes = [
         meta: {
           title: "Lançamentos",
         },
+      },
+      {
+        path: "manage-accounts",
+        name: "manage-accounts",
+        component: () =>
+          import("../views/main/ManageAccounts/ManageAccountsView.vue"),
+        meta: {
+          title: "Gerenciar contas",
+        },
+        children: [
+          {
+            path: "accounts",
+            name: "accounts",
+            component: () =>
+              import(
+                "../views/main/ManageAccounts/components/Accounts/AccountsView.vue"
+              ),
+            meta: {
+              title: "Contas",
+            },
+          },
+          {
+            path: "account/:id",
+            name: "edit-account",
+            component: () =>
+              import(
+                "../views/main/ManageAccounts/components/Accounts/EditAccount.vue"
+              ),
+            meta: {
+              title: "Editar conta",
+            },
+          },
+          {
+            path: "credit-cards",
+            name: "credit-cards",
+            component: () =>
+              import(
+                "../views/main/ManageAccounts/components/CreditCardsView.vue"
+              ),
+          },
+        ],
       },
     ],
   },

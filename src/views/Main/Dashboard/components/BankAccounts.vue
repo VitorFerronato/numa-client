@@ -4,7 +4,7 @@
     <div class="mt-4 border-left">
       <p class="text-text-secondary">Saldo Geral</p>
       <v-skeleton-loader
-        v-if="isLoading"
+        v-if="totalBalanceLoading"
         type="ossein"
         height="35px"
         width="100px"
@@ -12,9 +12,7 @@
 
       <p v-else>
         <span>R$ </span>
-        <span class="font-weight-bold text-h6">{{
-          accounts.generalBalance
-        }}</span>
+        <span class="font-weight-bold text-h6">{{ totalBalance }}</span>
       </p>
     </div>
 
@@ -32,8 +30,9 @@
           <v-divider class="my-4"></v-divider>
         </div>
       </template>
+
       <template v-else>
-        <div v-for="(account, index) in accounts.accounts" :key="index">
+        <div v-for="(account, index) in accounts" :key="index">
           <div class="d-flex justify-space-between align-center">
             <div class="d-flex align-center ga-4">
               <div class="avatar"></div>
@@ -46,7 +45,9 @@
       </template>
     </div>
 
-    <DBtn title="Gerenciar contas" variant="tonal" block class="mt-8" />
+    <router-link to="/main/manage-accounts/accounts">
+      <DBtn title="Gerenciar contas" variant="tonal" block class="mt-8" />
+    </router-link>
   </v-card>
 </template>
 
@@ -58,6 +59,8 @@ import { ref, onMounted } from "vue";
 
 const accounts = ref({});
 const isLoading = ref(true);
+const totalBalance = ref(0);
+const totalBalanceLoading = ref(true);
 
 const getAccounts = async () => {
   try {
@@ -72,8 +75,23 @@ const getAccounts = async () => {
   }, 2000);
 };
 
+const getTotalBalance = async () => {
+  totalBalanceLoading.value = true;
+  try {
+    const response = await service.getTotalBalance();
+    totalBalance.value = response;
+  } catch (error) {
+    console.error("Erro ao buscar saldo total:", error);
+  } finally {
+    setTimeout(() => {
+      totalBalanceLoading.value = false;
+    }, 2000);
+  }
+};
+
 onMounted(() => {
   getAccounts();
+  getTotalBalance();
 });
 </script>
 
