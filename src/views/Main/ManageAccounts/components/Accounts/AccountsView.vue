@@ -6,14 +6,14 @@
         <AddAccountModal @refreshAccounts="getAccounts" />
       </div>
 
-      <h4
-        class="text-subtitle-1 text-center"
+      <!-- Empty state -->
+      <DEmptyState
         v-if="!accounts.length && !isLoading"
-      >
-        Nenhuma conta encontrada
-      </h4>
+        icon="mdi-bank-outline"
+        title="Você ainda não possui contas cadastradas"
+      />
 
-      <!-- Skeleton Loader -->
+      <!-- Loader -->
       <div v-if="isLoading" class="skeleton-container">
         <div v-for="n in 3" :key="n" class="skeleton-item">
           <div class="d-flex justify-space-between align-center">
@@ -41,7 +41,12 @@
       </div>
 
       <!-- Accounts List -->
-      <div v-else v-for="(account, index) in accounts" :key="index">
+      <div
+        v-else
+        v-for="(account, index) in accounts"
+        :key="index"
+        class="account-item pa-4"
+      >
         <router-link :to="`/main/manage-accounts/account/${account.id}`">
           <div class="d-flex justify-space-between align-center">
             <div class="d-flex align-center ga-4">
@@ -60,6 +65,7 @@
 
 <script setup>
 import DAvatar from "@/components/DAvatar.vue";
+import DEmptyState from "@/components/DEmptyState.vue";
 import AddAccountModal from "./AddAccountModal.vue";
 
 import { service } from "@/api";
@@ -86,6 +92,13 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.account-item {
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
 .border-left {
   border-left: 4px solid $feedback-color-success-pure;
   border-radius: 4px;

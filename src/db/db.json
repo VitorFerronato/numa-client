@@ -3,17 +3,16 @@
     "totalBalance": 1000,
     "totalExpenses": 500
   },
-  "generalBalance": 3250,
   "accounts": [
     {
-      "id": "dd42",
-      "name": "Teste",
-      "balance": 2000
+      "id": "d8f4",
+      "name": "Bradesco - Edit",
+      "balance": 5000
     },
     {
-      "id": "5151",
-      "name": "Teste 4",
-      "balance": 0
+      "id": "7fb6",
+      "name": "Nubank",
+      "balance": 3250
     }
   ],
   "creditCards": {

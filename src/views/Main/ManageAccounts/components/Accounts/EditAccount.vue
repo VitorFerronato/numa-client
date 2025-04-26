@@ -3,16 +3,8 @@
     <v-card class="pa-6 w-50">
       <div class="d-flex justify-space-between align-center mb-6">
         <h2 class="text-h6">Editar Conta</h2>
-        <v-btn
-          :loading="loading"
-          :disabled="getAccountLoading"
-          @click="deleteAccount"
-          color="error"
-          variant="tonal"
-          type="submit"
-        >
-          Excluir conta
-        </v-btn>
+
+        <DeleteAccountModal :account="accountData" :accountId="accountId" />
       </div>
 
       <div v-if="getAccountLoading" class="d-flex justify-center">
@@ -66,6 +58,8 @@
 </template>
 
 <script setup>
+import DeleteAccountModal from "./DeleteAccountModal.vue";
+
 import { service } from "@/api";
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
@@ -73,12 +67,11 @@ import { ref, onMounted } from "vue";
 const form = ref(null);
 const router = useRouter();
 const loading = ref(false);
+const accountId = ref(null);
 const getAccountLoading = ref(false);
-
 const accountData = ref({
   name: "",
   balance: 0,
-  includeInTotal: true,
 });
 
 const validateForm = async () => {
@@ -113,20 +106,8 @@ const getAccountById = async (accountId) => {
   }
 };
 
-const deleteAccount = async () => {
-  getAccountLoading.value = true;
-  try {
-    await service.deleteAccount(router.currentRoute.value.params.id);
-    router.push("/main/manage-accounts/accounts");
-  } catch (error) {
-    console.error("Error deleting account:", error);
-  } finally {
-    getAccountLoading.value = false;
-  }
-};
-
 onMounted(() => {
-  const accountId = router.currentRoute.value.params.id;
-  getAccountById(accountId);
+  accountId.value = router.currentRoute.value.params.id;
+  getAccountById(accountId.value);
 });
 </script>

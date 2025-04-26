@@ -99,7 +99,7 @@ const routes = [
             name: "credit-cards",
             component: () =>
               import(
-                "../views/main/ManageAccounts/components/CreditCardsView.vue"
+                "../views/main/ManageAccounts/components/CreditCards/CreditCardsView.vue"
               ),
           },
         ],
