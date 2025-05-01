@@ -72,6 +72,12 @@
         </div>
       </div>
     </div>
+
+    <div class="mt-auto">
+      <router-link to="/main/manage-accounts/credit-cards">
+        <DBtn title="Gerenciar cartões" variant="tonal" block class="mt-8" />
+      </router-link>
+    </div>
   </v-card>
 </template>
 

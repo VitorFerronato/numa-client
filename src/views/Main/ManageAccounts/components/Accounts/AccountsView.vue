@@ -14,31 +14,7 @@
       />
 
       <!-- Loader -->
-      <div v-if="isLoading" class="skeleton-container">
-        <div v-for="n in 3" :key="n" class="skeleton-item">
-          <div class="d-flex justify-space-between align-center">
-            <div class="d-flex align-center ga-4">
-              <v-skeleton-loader
-                type="avatar"
-                width="43"
-                height="43"
-                class="skeleton-avatar"
-              ></v-skeleton-loader>
-              <v-skeleton-loader
-                type="text"
-                width="150"
-                height="24"
-              ></v-skeleton-loader>
-            </div>
-            <v-skeleton-loader
-              type="text"
-              width="24"
-              height="24"
-            ></v-skeleton-loader>
-          </div>
-          <v-divider class="my-8"></v-divider>
-        </div>
-      </div>
+      <DListSkeletonLoader v-if="isLoading" />
 
       <!-- Accounts List -->
       <div
@@ -67,6 +43,7 @@
 import DAvatar from "@/components/DAvatar.vue";
 import DEmptyState from "@/components/DEmptyState.vue";
 import AddAccountModal from "./AddAccountModal.vue";
+import DListSkeletonLoader from "@/components/DListSkeletonLoader.vue";
 
 import { service } from "@/api";
 import { ref, onMounted } from "vue";
@@ -82,7 +59,9 @@ const getAccounts = async () => {
   } catch (error) {
     console.error("Erro ao buscar contas:", error);
   } finally {
-    isLoading.value = false;
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 1000);
   }
 };
 
@@ -94,24 +73,9 @@ onMounted(() => {
 <style lang="scss" scoped>
 .account-item {
   transition: background-color 0.3s ease;
+  border-radius: 10px;
   &:hover {
     background-color: #f5f5f5;
-  }
-}
-
-.border-left {
-  border-left: 4px solid $feedback-color-success-pure;
-  border-radius: 4px;
-  padding-left: 16px;
-}
-
-.skeleton-container {
-  .skeleton-item {
-    margin-bottom: 8px;
-  }
-
-  .skeleton-avatar {
-    border-radius: 50%;
   }
 }
 </style>

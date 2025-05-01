@@ -44,10 +44,7 @@ import DAvatar from "@/components/DAvatar.vue";
 import DTextField from "@/components/DTextField.vue";
 
 import { service } from "@/api";
-import { useRouter } from "vue-router";
 import { ref, watch } from "vue";
-
-const router = useRouter();
 
 const emit = defineEmits(["refreshAccounts"]);
 
@@ -85,7 +82,6 @@ const createAccount = async () => {
   isLoading.value = true;
   try {
     await service.createAccount(accountData.value);
-    router.push("/main/manage-accounts/accounts");
   } catch (error) {
     console.error("Erro ao criar conta:", error);
   } finally {

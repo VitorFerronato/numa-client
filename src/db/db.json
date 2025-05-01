@@ -15,27 +15,21 @@
       "balance": 3250
     }
   ],
-  "creditCards": {
-    "totalInvoice": 1000,
-    "creditCards": [
-      {
-        "name": "Banco do Brasil",
-        "id": 2,
-        "availableLimit": 9,
-        "invoice": 1000,
-        "closeDate": "10/04/2025",
-        "dueDate": "17/04/2025",
-        "icon": 0
-      },
-      {
-        "name": "Nubank",
-        "id": 4,
-        "availableLimit": 200,
-        "invoice": 1000,
-        "closeDate": "10/04/2025",
-        "dueDate": "17/04/2025",
-        "icon": 1
-      }
-    ]
-  }
+  "creditCards": [
+    {
+      "id": "e712",
+      "name": "Teste 1",
+      "limit": 5.25,
+      "closeDate": "2025-04-10",
+      "dueDate": "2025-04-30"
+    },
+    {
+      "id": "fa9a",
+      "name": "Teste 2",
+      "accountId": "d8f4",
+      "limit": 5.947,
+      "closeDate": "2025-04-15",
+      "dueDate": "2025-04-30"
+    }
+  ]
 }

@@ -20,8 +20,18 @@ export const service = {
     return response.data;
   },
 
+  async createCreditCard(data) {
+    const response = await api.post("/creditCards", data);
+    return response.data;
+  },
+
   async getAccountById(id) {
     const response = await api.get(`/accounts/${id}`);
+    return response.data;
+  },
+
+  async getCreditCardById(id) {
+    const response = await api.get(`/creditCards/${id}`);
     return response.data;
   },
 

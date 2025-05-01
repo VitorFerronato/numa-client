@@ -7,6 +7,8 @@
     <v-combobox
       v-bind="$attrs"
       :items="items"
+      item-text="name"
+      item-value="id"
       variant="outlined"
       density="comfortable"
       hide-details="auto"

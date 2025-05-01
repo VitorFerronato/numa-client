@@ -102,6 +102,14 @@ const routes = [
                 "../views/main/ManageAccounts/components/CreditCards/CreditCardsView.vue"
               ),
           },
+          {
+            path: "credit-card/:id",
+            name: "edit-credit-card",
+            component: () =>
+              import(
+                "../views/main/ManageAccounts/components/CreditCards/EditCreditCard.vue"
+              ),
+          },
         ],
       },
     ],

@@ -4,7 +4,8 @@
       <slot name="title">{{ title }}</slot>
     </label>
     <v-date-input
-      v-model="date"
+      :model-value="modelValue"
+      @update:model-value="handleDateUpdate"
       variant="outlined"
       density="comfortable"
       hide-details="auto"
@@ -17,15 +18,28 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 defineProps({
   title: {
     type: String,
     default: "",
   },
+  modelValue: {
+    type: [Date, String],
+    default: null,
+  },
 });
 
-const date = ref(new Date());
+const emit = defineEmits(["update:modelValue"]);
+
+const handleDateUpdate = (date) => {
+  if (date) {
+    // Format date to YYYY-MM-DD
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+    emit("update:modelValue", formattedDate);
+  } else {
+    emit("update:modelValue", null);
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
