@@ -4,7 +4,7 @@
       <div class="d-flex justify-space-between align-center mb-6">
         <h2 class="text-h6">Editar Conta</h2>
 
-        <DeleteAccountModal :account="accountData" :accountId="accountId" />
+        <DeleteAccountModal :data="accountData" :id="accountId" />
       </div>
 
       <div v-if="getAccountLoading" class="d-flex justify-center">
@@ -35,22 +35,20 @@
           class="mb-4"
         />
         <div class="d-flex justify-end ga-4">
-          <v-btn
+          <DBtn
+            title="Cancelar"
             :disabled="loading"
             @click="$router.back()"
-            color="error"
             variant="outlined"
-          >
-            Cancelar
-          </v-btn>
-          <v-btn
+          />
+
+          <DBtn
+            title="Salvar"
             :loading="loading"
             color="success"
             variant="elevated"
             type="submit"
-          >
-            Salvar
-          </v-btn>
+          />
         </div>
       </v-form>
     </v-card>
@@ -59,6 +57,7 @@
 
 <script setup>
 import DeleteAccountModal from "./DeleteAccountModal.vue";
+import DBtn from "@/components/DBtn.vue";
 
 import { service } from "@/api";
 import { useRouter } from "vue-router";

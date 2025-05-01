@@ -52,6 +52,7 @@
             :items="accounts"
             :loading="getAccountsLoading"
             :disabled="getAccountsLoading"
+            :rules="[(v) => !!v || 'Obrigatório informar a conta!']"
             item-title="name"
             item-value="id"
             title="Conta de pagamento padrão"

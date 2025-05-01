@@ -3,7 +3,12 @@
     <v-card class="pa-6 w-50">
       <div class="d-flex justify-space-between align-center mb-6">
         <div class="d-flex align-center ga-4">
-          <DAvatar />
+          <div class="d-flex ga-4 align-center">
+            <v-icon @click="router.push('/main/manage-accounts/credit-cards')"
+              >mdi-chevron-left</v-icon
+            >
+            <DAvatar />
+          </div>
           <div>
             <p class="text-h6">{{ creditCard?.name }}</p>
             <p class="text-text-secondary text-body-2">
@@ -20,12 +25,7 @@
             append-icon="mdi-pencil"
             variant="tonal"
           />
-          <DBtn
-            color="error"
-            title="Excluir cartão"
-            append-icon="mdi-trash-can"
-            variant="tonal"
-          />
+          <DeleteAccountModal :data="creditCard" :id="creditCardId" isCredit />
         </div>
       </div>
 
@@ -43,6 +43,7 @@
 <script setup>
 import DBtn from "@/components/DBtn.vue";
 import DAvatar from "@/components/DAvatar.vue";
+import DeleteAccountModal from "../Accounts/DeleteAccountModal.vue";
 
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
@@ -58,7 +59,6 @@ const getCreditCardById = async (creditCardId) => {
   try {
     const response = await service.getCreditCardById(creditCardId);
     creditCard.value = response;
-    console.log(creditCard.value);
   } catch (error) {
     console.error("Error getting credit card:", error);
   }

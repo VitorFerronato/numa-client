@@ -45,6 +45,11 @@ export const service = {
     return response.data;
   },
 
+  async deleteCreditCard(id) {
+    const response = await api.delete(`/creditCards/${id}`);
+    return response.data;
+  },
+
   async getTotalBalance() {
     const response = await api.get("/accounts");
     const totalBalance = response.data.reduce(

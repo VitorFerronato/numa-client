@@ -1,21 +1,21 @@
 <template>
   <div>
     <DBtn
+      :title="buttonName"
       @click="dialog = true"
       color="error"
-      title="Excluir conta"
       append-icon="mdi-trash-can"
       variant="tonal"
     />
 
     <v-dialog v-model="dialog" width="500" :persistent="isLoading">
       <v-card :disabled="isLoading" class="pa-8">
-        <h4 class="mb-6">Excluir conta</h4>
+        <h4 class="mb-6">Excluir {{ name }}</h4>
 
         <div class="text-center">
           <p class="mb-6">
-            Tem certeza que deseja excluir a conta
-            <strong>{{ account?.name ?? "-" }} ?</strong>
+            Tem certeza que deseja excluir {{ name }}
+            <strong>{{ data?.name ?? "-" }} ?</strong>
           </p>
           <p class="color-error">Essa ação não podera ser desfeita</p>
         </div>
@@ -32,10 +32,10 @@
           />
           <DBtn
             :loading="isLoading"
+            :title="buttonName"
             @click="deleteAccount"
             type="submit"
             color="error"
-            title="Excluir conta"
             append-icon="mdi-trash-can"
           />
         </div>
@@ -47,7 +47,7 @@
 <script setup>
 import DBtn from "@/components/DBtn.vue";
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { service } from "@/api";
 import { useRouter } from "vue-router";
 
@@ -58,26 +58,48 @@ const isLoading = ref(false);
 
 const emit = defineEmits(["refreshAccounts"]);
 const props = defineProps({
-  account: {
+  data: {
     type: Object,
     required: true,
   },
-  accountId: {
+  id: {
     type: String,
     required: true,
   },
+  isCredit: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const name = computed(() => {
+  return props.isCredit ? "o cartão" : "a conta";
+});
+
+const buttonName = computed(() => {
+  return props.isCredit ? "Excluir cartão" : "Excluir conta";
 });
 
 const deleteAccount = async () => {
   isLoading.value = true;
+
+  const method = props.isCredit ? "deleteCreditCard" : "deleteAccount";
+
   try {
-    await service.deleteAccount(props.accountId);
-    router.push("/main/manage-accounts/accounts");
+    await service[method](props.id);
+
     dialog.value = false;
+    redirect();
   } catch (error) {
     console.error("Error deleting account:", error);
   } finally {
     isLoading.value = false;
   }
+};
+
+const redirect = () => {
+  props.isCredit
+    ? router.push("/main/manage-accounts/credit-cards")
+    : router.push("/main/manage-accounts/accounts");
 };
 </script>

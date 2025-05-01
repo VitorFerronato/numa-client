@@ -5,31 +5,19 @@
   },
   "accounts": [
     {
-      "id": "d8f4",
-      "name": "Bradesco - Edit",
-      "balance": 5000
-    },
-    {
-      "id": "7fb6",
-      "name": "Nubank",
-      "balance": 3250
+      "id": "0ce1",
+      "name": "Teste 1",
+      "balance": 0
     }
   ],
   "creditCards": [
     {
-      "id": "e712",
-      "name": "Teste 1",
-      "limit": 5.25,
-      "closeDate": "2025-04-10",
-      "dueDate": "2025-04-30"
-    },
-    {
-      "id": "fa9a",
-      "name": "Teste 2",
-      "accountId": "d8f4",
-      "limit": 5.947,
-      "closeDate": "2025-04-15",
-      "dueDate": "2025-04-30"
+      "id": "67a4",
+      "name": "Teste 1 - Cartão",
+      "accountId": "0ce1",
+      "limit": 2700,
+      "closeDate": "2025-05-10",
+      "dueDate": "2025-05-20"
     }
   ]
 }
