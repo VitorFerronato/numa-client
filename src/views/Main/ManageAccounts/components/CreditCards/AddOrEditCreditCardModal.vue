@@ -1,9 +1,9 @@
 <template>
   <div>
     <DBtn
+      :title="buttonName"
+      :append-icon="buttonIcon"
       @click="dialog = true"
-      title="Adicionar cartão"
-      append-icon="mdi-plus"
       variant="tonal"
     />
 
@@ -62,7 +62,7 @@
             <DBtn
               :loading="isLoading"
               type="submit"
-              title="Adicionar cartão"
+              title="Confirmar"
               append-icon="mdi-plus"
             />
           </div>
@@ -80,9 +80,19 @@ import DTextField from "@/components/DTextField.vue";
 import DDataPicker from "@/components/DDataPicker.vue";
 
 import { service } from "@/api";
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 
 const emit = defineEmits(["refreshCreditCards"]);
+const props = defineProps({
+  isEdit: {
+    type: Boolean,
+    default: false,
+  },
+  creditCardToEdit: {
+    type: Object,
+    required: false,
+  },
+});
 
 const form = ref(null);
 const dialog = ref(false);
@@ -94,6 +104,14 @@ const creditCardData = ref({
   limit: null,
   closeDate: null,
   dueDate: null,
+});
+
+const buttonName = computed(() => {
+  return props.isEdit ? "Editar cartão" : "Adicionar cartão";
+});
+
+const buttonIcon = computed(() => {
+  return props.isEdit ? "mdi-pencil" : "mdi-plus";
 });
 
 const getAccounts = async () => {
@@ -111,16 +129,18 @@ const getAccounts = async () => {
 const validateForm = async () => {
   const { valid } = await form.value.validate();
 
-  if (valid) createCreditCard();
+  if (valid) createOrEditCreditCard();
 };
 
-const createCreditCard = async () => {
+const createOrEditCreditCard = async () => {
   isLoading.value = true;
 
   const request = buildRequest();
 
   try {
-    await service.createCreditCard(request);
+    if (props.creditCardToEdit) {
+      await service.updateCreditCard(creditCardData.value.id, request);
+    } else await service.createCreditCard(request);
   } catch (error) {
     console.error("Erro ao criar cartão:", error);
   } finally {
@@ -133,7 +153,7 @@ const createCreditCard = async () => {
 const buildRequest = () => {
   return {
     name: creditCardData.value.name,
-    accountId: creditCardData.value.accountId.id,
+    account: creditCardData.value.accountId,
     limit: Number(creditCardData.value.limit),
     closeDate: creditCardData.value.closeDate,
     dueDate: creditCardData.value.dueDate,
@@ -154,6 +174,17 @@ const resetCreditCardData = () => {
 };
 
 watch(dialog, (newValue) => {
+  if (newValue && props.creditCardToEdit) {
+    creditCardData.value = {
+      name: props.creditCardToEdit.name,
+      limit: props.creditCardToEdit.limit,
+      closeDate: props.creditCardToEdit.closeDate,
+      dueDate: props.creditCardToEdit.dueDate,
+      accountId: props.creditCardToEdit.account,
+      id: props.creditCardToEdit.id,
+    };
+  }
+
   if (!newValue) resetCreditCardData();
 });
 

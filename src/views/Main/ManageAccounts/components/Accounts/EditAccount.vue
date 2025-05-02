@@ -4,7 +4,7 @@
       <div class="d-flex justify-space-between align-center mb-6">
         <h2 class="text-h6">Editar Conta</h2>
 
-        <DeleteAccountModal :data="accountData" :id="accountId" />
+        <DeleteCreditOrAccountModal :data="accountData" :id="accountId" />
       </div>
 
       <div v-if="getAccountLoading" class="d-flex justify-center">
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import DeleteAccountModal from "./DeleteAccountModal.vue";
+import DeleteCreditOrAccountModal from "../../DeleteCreditOrAccountModal.vue";
 import DBtn from "@/components/DBtn.vue";
 
 import { service } from "@/api";

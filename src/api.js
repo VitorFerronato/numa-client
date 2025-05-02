@@ -40,6 +40,11 @@ export const service = {
     return response.data;
   },
 
+  async updateCreditCard(id, data) {
+    const response = await api.put(`/creditCards/${id}`, data);
+    return response.data;
+  },
+
   async deleteAccount(id) {
     const response = await api.delete(`/accounts/${id}`);
     return response.data;

@@ -5,19 +5,28 @@
   },
   "accounts": [
     {
-      "id": "0ce1",
-      "name": "Teste 1",
-      "balance": 0
+      "id": "ac01",
+      "name": "Teste 01",
+      "balance": 5000
+    },
+    {
+      "id": "06b0",
+      "name": "Teste 02",
+      "balance": 3800
     }
   ],
   "creditCards": [
     {
-      "id": "67a4",
-      "name": "Teste 1 - Cartão",
-      "accountId": "0ce1",
-      "limit": 2700,
-      "closeDate": "2025-05-10",
-      "dueDate": "2025-05-20"
+      "name": "Cartão 01",
+      "account": {
+        "id": "06b0",
+        "name": "Teste 02",
+        "balance": 0
+      },
+      "limit": 58400,
+      "closeDate": "2025-05-01",
+      "dueDate": "2025-05-05",
+      "id": "2518"
     }
   ]
 }

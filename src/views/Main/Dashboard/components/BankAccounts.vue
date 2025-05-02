@@ -12,8 +12,9 @@
         ></v-skeleton-loader>
 
         <p v-else>
-          <span>R$ </span>
-          <span class="font-weight-bold text-h6">{{ totalBalance }}</span>
+          <span class="font-weight-bold text-h6">{{
+            formatCurrency(totalBalance)
+          }}</span>
         </p>
       </div>
 
@@ -22,8 +23,7 @@
       <p class="font-weight-bold text-subtitle-1">Minhas contas</p>
 
       <div class="d-flex flex-column justify-space-between ga-4 mt-4">
-        <!-- LOADER -->
-        <template v-if="isLoading">
+        <div v-if="isLoading">
           <div v-for="n in 3" :key="n">
             <v-skeleton-loader
               type="list-item-avatar-two-line"
@@ -31,28 +31,28 @@
             ></v-skeleton-loader>
             <v-divider class="my-4"></v-divider>
           </div>
-        </template>
+        </div>
 
-        <!-- EMPTY STATE -->
         <DEmptyState
           v-else-if="!isLoading && !accounts.length"
           icon="mdi-bank-outline"
           title="Você ainda não possui contas cadastradas"
         />
 
-        <!-- ACCOUNTS -->
-        <template v-else>
+        <div v-else>
           <div v-for="(account, index) in accounts" :key="index">
             <div class="d-flex justify-space-between align-center">
               <div class="d-flex align-center ga-4">
                 <DAvatar />
                 <p>{{ account.name }}</p>
               </div>
-              <p class="font-weight-medium">R$ {{ account.balance }}</p>
+              <p class="font-weight-medium">
+                {{ formatCurrency(account.balance) }}
+              </p>
             </div>
             <v-divider class="my-4"></v-divider>
           </div>
-        </template>
+        </div>
       </div>
     </div>
 
@@ -71,6 +71,7 @@ import DEmptyState from "@/components/DEmptyState.vue";
 
 import { service } from "@/api";
 import { ref, onMounted } from "vue";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 const accounts = ref({});
 const isLoading = ref(true);
@@ -84,7 +85,6 @@ const getAccounts = async () => {
   } catch (error) {
     console.error("Erro ao buscar contas:", error);
   }
-
   setTimeout(() => {
     isLoading.value = false;
   }, 2000);

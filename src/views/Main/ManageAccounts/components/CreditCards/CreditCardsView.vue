@@ -2,9 +2,9 @@
   <div class="d-flex justify-center">
     <v-card class="pa-8 w-50">
       <div class="d-flex justify-space-between align-center mb-8">
-        <p class="font-weight-bold text-h6">Contas</p>
+        <p class="font-weight-bold text-h6">Cartões</p>
 
-        <AddCreditCardModal @refreshCreditCards="getCreditCards" />
+        <AddOrEditCreditCardModal @refreshCreditCards="getCreditCards" />
       </div>
 
       <DEmptyState
@@ -40,7 +40,7 @@
 <script setup>
 import DAvatar from "@/components/DAvatar.vue";
 import DEmptyState from "@/components/DEmptyState.vue";
-import AddCreditCardModal from "./AddCreditCardModal.vue";
+import AddOrEditCreditCardModal from "./AddOrEditCreditCardModal.vue";
 import DListSkeletonLoader from "@/components/DListSkeletonLoader.vue";
 
 import { service } from "@/api";
