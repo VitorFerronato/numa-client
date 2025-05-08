@@ -68,6 +68,11 @@ export const service = {
     const response = await api.post("/accounts", data);
     return response.data;
   },
+
+  async getCategories() {
+    const response = await api.get("/categories");
+    return response.data;
+  },
 };
 
 export default api;
