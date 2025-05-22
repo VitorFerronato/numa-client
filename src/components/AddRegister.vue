@@ -49,6 +49,8 @@
               <DCombobox
                 v-model="newEntry.destinyAccount"
                 :items="accounts"
+                :disabled="getAccountLoading"
+                :loading="getAccountLoading"
                 title="Conta/Cartão"
                 item-title="name"
                 item-value="id"
@@ -59,6 +61,8 @@
               <DCombobox
                 v-model="newEntry.category"
                 :items="categories"
+                :disabled="getCategoriesLoading"
+                :loading="getCategoriesLoading"
                 title="Categoria"
               />
             </div>
@@ -92,11 +96,16 @@
           <div v-if="isInstallment">
             <div class="d-flex align-center ga-4 mt-4">
               <div class="w-50">
-                <DTextField v-model="newEntry.qtdInstallment" placeholder="2" />
+                <DCombobox
+                  v-model="newEntry.qtdInstallment"
+                  :items="installmentTypeItems"
+                  placeholder="2"
+                />
               </div>
               <div class="w-50">
-                <DTextField
+                <DCombobox
                   v-model="newEntry.installmentRepeat"
+                  :items="installmentTypeItems"
                   placeholder="meses"
                 />
               </div>
@@ -162,6 +171,8 @@ const categories = ref([]);
 const repeatEntry = ref(false);
 const isInstallment = ref(false);
 const isFixedExpense = ref(false);
+const getAccountLoading = ref(false);
+const getCategoriesLoading = ref(false);
 const newEntry = ref({
   date: new Date(),
   name: "",
@@ -172,6 +183,19 @@ const newEntry = ref({
   destinyAccount: null,
   installmentRepeat: null,
 });
+
+const installmentTypeItems = ref([
+  {
+    title: "Mensal",
+    id: 1,
+  },
+  {
+    title: "Semanal",
+    id: 2,
+  },
+]);
+
+const numberOfInstallsment = computed(() => {});
 
 const toggleRepeatEntry = () => {
   repeatEntry.value = !repeatEntry.value;
@@ -197,21 +221,29 @@ const validateForm = () => {
 };
 
 const getAccounts = async () => {
+  getAccountLoading.value = true;
+
   try {
     const response = await service.getAccounts();
     accounts.value = response;
   } catch (error) {
     console.error("Erro ao buscar contas:", error);
   }
+
+  getAccountLoading.value = false;
 };
 
 const getCategories = async () => {
+  getCategoriesLoading.value = true;
+
   try {
     const response = await service.getCategories();
     categories.value = response;
   } catch (error) {
     console.error("Erro ao buscar contas:", error);
   }
+
+  getCategoriesLoading.value = false;
 };
 
 onMounted(() => {
